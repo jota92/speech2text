@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リアルタイム音声認識</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="controls">
+            <div class="language-selection">
+                <label for="language">言語選択:</label>
+                <select id="language">
+                    <option value="en-US" selected>English (US)</option>
+                    <option value="ja-JP">日本語</option>
+                    <option value="en-GB">English (UK)</option>
+                </select>
+            </div>
+
+            <div class="recognition-controls">
+                <button id="startBtn" class="btn start">
+                    <span class="icon">🎤</span>
+                    音声認識開始
+                </button>
+                <button id="stopBtn" class="btn stop" disabled>
+                    <span class="icon">⏹️</span>
+                    停止
+                </button>
+                <button id="clearBtn" class="btn clear">
+                    <span class="icon">🗑️</span>
+                    クリア
+                </button>
+            </div>
+        </div>
+
+        <div class="status-indicator">
+            <div id="status" class="status">準備完了</div>
+            <div id="confidence" class="confidence"></div>
+        </div>
+
+        <div class="output-section">
+            <div class="text-output">
+                <h3>音声認識結果</h3>
+                <p class="instruction">英語モードでは単語をクリックするとクリップボードにコピーされます</p>
+                <div id="outputText" class="output-text" placeholder="ここに音声認識結果が表示されます..."></div>
+            </div>
+        </div>
+
+
+      
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
