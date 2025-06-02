@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>SQLite DBビューア</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+    #output {
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>SQLite DB ビューア</h1>
+  <input type="file" id="dbfile" accept=".db" />
+  <select id="tables" style="margin-left: 10px;"></select>
+  <div id="output"></div>
+
+  <script>
+    let db;
+    document.getElementById('dbfile').addEventListener('change', async function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const arrayBuffer = await file.arrayBuffer();
+      const SQL = await initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` });
+      db = new SQL.Database(new Uint8Array(arrayBuffer));
+
+      const tables = db.exec("SELECT name FROM sqlite_master WHERE type='table'");
+      const tableSelect = document.getElementById('tables');
+      tableSelect.innerHTML = '';
+
+      if (tables.length > 0) {
+        tables[0].values.forEach(row => {
+          const option = document.createElement('option');
+          option.value = option.textContent = row[0];
+          tableSelect.appendChild(option);
+        });
+
+        tableSelect.addEventListener('change', () => showTable(tableSelect.value));
+        showTable(tableSelect.value);
+      } else {
+        document.getElementById('output').innerHTML = '<p>テーブルが見つかりません。</p>';
+      }
+    });
+
+    function showTable(tableName) {
+      const result = db.exec(`SELECT * FROM ${tableName}`);
+      const output = document.getElementById('output');
+      output.innerHTML = '';
+
+      if (result.length === 0) {
+        output.innerHTML = '<p>データがありません。</p>';
+        return;
+      }
+
+      const table = document.createElement('table');
+      const header = document.createElement('tr');
+      result[0].columns.forEach(col => {
+        const th = document.createElement('th');
+        th.textContent = col;
+        header.appendChild(th);
+      });
+      table.appendChild(header);
+
+      result[0].values.forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach(val => {
+          const td = document.createElement('td');
+          td.textContent = val;
+          tr.appendChild(td);
+        });
+        table.appendChild(tr);
+      });
+
+      output.appendChild(table);
+    }
+  </script>
+</body>
+</html>
