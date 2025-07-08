@@ -135,10 +135,13 @@ class SpeechRecognitionApp {
         // 認識終了時
         this.recognition.onend = () => {
             console.log('音声認識が終了しました - isListening:', this.isListening);
-            
-            // 中間結果をクリア
-            this.interimTranscript = '';
-            this.updateOutputText();
+
+            // 表示済みの中間結果を確定テキストに保存してからクリア
+            if (this.interimTranscript) {
+                this.finalTranscript += this.interimTranscript;
+                this.interimTranscript = '';
+                this.updateOutputText();
+            }
             
             // ユーザーが停止を押していない場合は自動的に再開
             if (this.isListening) {
