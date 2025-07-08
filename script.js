@@ -35,7 +35,7 @@ class SpeechRecognitionApp {
         // 設定
         this.recognition.continuous = true; // 連続認識
         this.recognition.interimResults = true; // 中間結果を取得
-        this.recognition.maxAlternatives = 1; // 代替候補数
+        this.recognition.maxAlternatives = 3; // 代替候補数を増やして精度向上
         this.recognition.lang = this.languageSelect.value; // 言語設定
 
         this.setupRecognitionEvents();
@@ -48,10 +48,8 @@ class SpeechRecognitionApp {
         this.recognition.onstart = () => {
             console.log('音声認識が開始されました');
             this.isListening = true;
-            // lastResultIndexは継続認識の場合リセットしない
-            if (this.finalTranscript === '') {
-                this.lastResultIndex = 0;
-            }
+            // セッション開始時は常にインデックスをリセット
+            this.lastResultIndex = 0;
             this.updateStatus('認識中');
             this.startBtn.disabled = true;
             this.stopBtn.disabled = false;
@@ -66,8 +64,15 @@ class SpeechRecognitionApp {
 
             // 結果を処理
             for (let i = this.lastResultIndex; i < event.results.length; i++) {
-                const transcript = event.results[i][0].transcript;
-                const confidence = event.results[i][0].confidence;
+                const result = event.results[i];
+                let bestIndex = 0;
+                for (let j = 1; j < result.length; j++) {
+                    if (result[j].confidence > result[bestIndex].confidence) {
+                        bestIndex = j;
+                    }
+                }
+                const transcript = result[bestIndex].transcript;
+                const confidence = result[bestIndex].confidence;
 
                 console.log(`Result ${i}: "${transcript}" (isFinal: ${event.results[i].isFinal})`);
 
@@ -130,10 +135,13 @@ class SpeechRecognitionApp {
         // 認識終了時
         this.recognition.onend = () => {
             console.log('音声認識が終了しました - isListening:', this.isListening);
-            
-            // 中間結果をクリア
-            this.interimTranscript = '';
-            this.updateOutputText();
+
+            // 表示済みの中間結果を確定テキストに保存してからクリア
+            if (this.interimTranscript) {
+                this.finalTranscript += this.interimTranscript;
+                this.interimTranscript = '';
+                this.updateOutputText();
+            }
             
             // ユーザーが停止を押していない場合は自動的に再開
             if (this.isListening) {
