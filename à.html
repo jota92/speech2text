@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>車内2人・テント2人 ルーレット</title>
+<style>
+  :root{
+    --bg:#0e1117; --panel:#161b22; --text:#e6edf3; --muted:#9da7b3; --accent:#7aa2f7; --ok:#17c964; --warn:#f5a524; --danger:#f31260;
+  }
+  *{box-sizing:border-box;font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Sans", "Noto Sans JP", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";}
+  body{margin:0;background:radial-gradient(1000px 600px at 20% 10%, #111726, #0a0d13), var(--bg); color:var(--text);}
+  .wrap{max-width:1200px;margin:0 auto;padding:clamp(12px,3vw,24px);}
+  header{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+  h1{font-size:clamp(18px,3.5vw,24px);margin:0;font-weight:700;letter-spacing:.02em}
+  .sub{color:var(--muted);font-size:clamp(12px,2.8vw,14px)}
+  .grid{display:grid;grid-template-columns:1fr;gap:16px}
+  @media(min-width:860px){ .grid{grid-template-columns: minmax(280px,1fr) minmax(320px,1.2fr);} }
+
+  .panel{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:16px; box-shadow: 0 10px 30px rgba(0,0,0,.25);}
+  .wheelWrap{display:grid;place-items:center}
+  .wheelBox{position:relative; width:min(78vw,480px); aspect-ratio:1/1;}
+  canvas{width:100%;height:100%;display:block;filter: drop-shadow(0 12px 24px rgba(0,0,0,.35));}
+  .pin{position:absolute; inset:auto 0 100% 0; margin:auto; width:0;height:0; border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:24px solid var(--accent); transform:translateY(10px); filter: drop-shadow(0 2px 2px rgba(0,0,0,.4));}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+  button{appearance:none;border:0;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer;background:var(--accent);color:#0b1020;transition:transform .06s ease, opacity .2s ease;}
+  button:hover{transform:translateY(-1px)}
+  button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.14)}
+  .danger{background:var(--danger);color:white}
+
+  .roles{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:520px){ .roles{grid-template-columns:1fr 1fr} }
+  .roleCard{border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))}
+  .roleCard h2{margin:0 0 8px 0;font-size:16px;display:flex;align-items:center;gap:8px}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:8px 10px;border-radius:999px;font-weight:700}
+  .pill.car{border-color:rgba(122,162,247,.4);background:rgba(122,162,247,.15);color:#c9d8ff}
+  .pill.tent{border-color:rgba(23,201,100,.35);background:rgba(23,201,100,.17);color:#ccf4dd}
+  .slots{display:flex;gap:8px;flex-wrap:wrap}
+  .slot{min-width:96px; display:flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:12px;border:1px dashed rgba(255,255,255,.16);color:var(--muted);background:rgba(255,255,255,.02)}
+  .slot.filled{border-style:solid;color:var(--text)}
+  .slot.car{border-color:rgba(122,162,247,.5);background:rgba(122,162,247,.12)}
+  .slot.tent{border-color:rgba(23,201,100,.5);background:rgba(23,201,100,.12)}
+  .log{max-height:220px;overflow:auto;border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px;background:rgba(255,255,255,.03);font-size:14px}
+  .log p{margin:.4em 0}
+  .muted{color:var(--muted)}
+  .hint{font-size:12px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>ルーレットで決める：車内2人・テント2人</h1>
+        <div class="sub">参加者：いりえ／おかむら／さとう／うえの（完全ランダム・重複なし）</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- 左：ルーレット -->
+      <section class="panel">
+        <div class="wheelWrap">
+          <div class="wheelBox">
+            <div class="pin" aria-hidden="true"></div>
+            <canvas id="wheel" width="1000" height="1000" aria-label="ルーレット"></canvas>
+          </div>
+          <div class="btns">
+            <button id="spinBtn">回す（抽選）</button>
+            <button id="autoBtn" class="ghost">全員決まるまで自動</button>
+            <button id="resetBtn" class="danger">リセット</button>
+          </div>
+          <div class="hint">※ 最初の2人が「車内」、残り2人が「テント」になります。</div>
+        </div>
+      </section>
+
+      <!-- 右：結果表示 -->
+      <section class="panel">
+        <div class="roles">
+          <div class="roleCard">
+            <h2><span class="pill car">🚗 車内（2名）</span></h2>
+            <div class="slots" id="carSlots">
+              <div class="slot">空き</div>
+              <div class="slot">空き</div>
+            </div>
+          </div>
+          <div class="roleCard">
+            <h2><span class="pill tent">⛺ テント（2名）</span></h2>
+            <div class="slots" id="tentSlots">
+              <div class="slot">空き</div>
+              <div class="slot">空き</div>
+            </div>
+          </div>
+        </div>
+        <div style="height:12px"></div>
+        <div class="log" id="log" aria-live="polite"></div>
+      </section>
+    </div>
+  </div>
+
+<script>
+(() => {
+  // === データ ===
+  const initialNames = ["いりえ","おかむら","さとう","うえの"];
+
+  // 暗号学的に安全な乱数で整数を得る
+  function randIntCrypto(maxExclusive){
+    if (maxExclusive <= 0) return 0;
+    const u32 = new Uint32Array(1);
+    let limit = Math.floor(0x100000000 / maxExclusive) * maxExclusive;
+    let r;
+    do {
+      crypto.getRandomValues(u32);
+      r = u32[0];
+    } while (r >= limit);
+    return r % maxExclusive;
+  }
+
+  // === ルーレット描画 ===
+  const canvas = document.getElementById('wheel');
+  const ctx = canvas.getContext('2d');
+  const pinAngle = -Math.PI/2; // 上方向が指針
+  let currentAngle = 0;
+  let spinning = false;
+
+  function drawWheel(names){
+    const cx = canvas.width/2, cy = canvas.height/2;
+    const r = canvas.width/2 - 10;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    // 外周影
+    ctx.save();
+    ctx.translate(cx,cy);
+    ctx.rotate(currentAngle);
+    const N = names.length;
+    const arc = (Math.PI*2)/Math.max(N,1);
+
+    for(let i=0;i<N;i++){
+      // セグメント色（交互）
+      const baseA = 0.22;
+      const even = i%2===0;
+      const fill = even ? `rgba(122,162,247,${baseA})` : `rgba(23,201,100,${baseA})`;
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.arc(0,0,r, i*arc, (i+1)*arc);
+      ctx.closePath();
+      ctx.fillStyle = fill;
+      ctx.fill();
+
+      // セグメント仕上げ
+      ctx.strokeStyle = 'rgba(255,255,255,.10)';
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      // テキスト
+      ctx.save();
+      const mid = i*arc + arc/2;
+      ctx.rotate(mid);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#e6edf3';
+      ctx.font = '48px "Hiragino Sans","Noto Sans JP",system-ui,sans-serif';
+      // 内側に少しオフセット
+      ctx.translate(r-24, 10);
+      // 背景グロー
+      ctx.fillStyle = 'rgba(0,0,0,.55)';
+      ctx.fillRect(-360,-42,360,58);
+      ctx.fillStyle = '#e6edf3';
+      ctx.fillText(names[i], 0, 0);
+      ctx.restore();
+    }
+
+    // 中心装飾
+    ctx.beginPath();
+    ctx.arc(cx,cy,80,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,.08)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,.18)';
+    ctx.lineWidth = 4;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  // === 状態 ===
+  let remaining = [...initialNames];
+  let car = [];
+  let tent = [];
+  let autoMode = false;
+
+  const carSlots = document.getElementById('carSlots');
+  const tentSlots = document.getElementById('tentSlots');
+  const log = document.getElementById('log');
+  const spinBtn = document.getElementById('spinBtn');
+  const autoBtn = document.getElementById('autoBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  function refreshUI(){
+    drawWheel(remaining.length ? remaining : ["完了"]);
+    renderSlots();
+    spinBtn.disabled = spinning || remaining.length===0;
+    autoBtn.disabled = spinning || remaining.length===0 || autoMode;
+  }
+
+  function renderSlots(){
+    function render(target, list, kind){
+      target.innerHTML = '';
+      for(let i=0;i<2;i++){
+        const el = document.createElement('div');
+        el.className = 'slot' + (list[i] ? ` filled ${kind}` : '');
+        el.textContent = list[i] || '空き';
+        target.appendChild(el);
+      }
+    }
+    render(carSlots, car, 'car');
+    render(tentSlots, tent, 'tent');
+  }
+
+  function addLog(text){
+    const p = document.createElement('p');
+    p.innerHTML = text;
+    log.prepend(p);
+  }
+
+  function assignRole(name){
+    if (car.length < 2){
+      car.push(name);
+      addLog(`🎯 <b>${name}</b> は <span class="pill car">🚗 車内</span> に決定！`);
+    } else {
+      tent.push(name);
+      addLog(`🎯 <b>${name}</b> は <span class="pill tent">⛺ テント</span> に決定！`);
+    }
+    renderSlots();
+    if (car.length===2 && tent.length===2){
+      addLog('✅ すべて決定しました！ おつかれさま！');
+      confettiQuick();
+    }
+  }
+
+  // === スピン ===
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+  async function spinOnce(){
+    if (spinning || remaining.length===0) return;
+    spinning = true; refreshUI();
+
+    // どの名前を当たりにするか（完全ランダム）
+    const winnerIndex = randIntCrypto(remaining.length);
+
+    // 今の角度で、winnerIndex の中心が pinAngle に来る角度を計算
+    const N = remaining.length;
+    const arc = (Math.PI*2)/N;
+    const segCenter = winnerIndex*arc + arc/2; // wheel座標（currentAngle基準）
+    // 目標角度：pinAngle に segCenter が一致するよう回す。+数回転
+    const rotations = 5 + randIntCrypto(4); // 5〜8回転
+    const targetAngle = currentAngle + (Math.PI*2)*rotations + (pinAngle - segCenter);
+
+    // アニメーション
+    const duration = 2500 + randIntCrypto(1200); // 2.5〜3.7秒
+    const start = performance.now();
+    await new Promise(resolve=>{
+      function frame(now){
+        const t = Math.min(1, (now - start) / duration);
+        const k = easeOutCubic(t);
+        currentAngle = currentAngle + (targetAngle - currentAngle)*k;
+        drawWheel(remaining);
+        if (t < 1) requestAnimationFrame(frame);
+        else resolve();
+      }
+      requestAnimationFrame(frame);
+    });
+
+    // 角度を正規化
+    currentAngle = ((targetAngle % (Math.PI*2)) + Math.PI*2) % (Math.PI*2);
+
+    // 勝者確定＆配属
+    const winner = remaining[winnerIndex];
+    remaining.splice(winnerIndex, 1);
+    assignRole(winner);
+
+    spinning = false; refreshUI();
+
+    // 自動モードなら続行
+    if (autoMode && remaining.length>0){
+      setTimeout(spinOnce, 800);
+    } else if (autoMode){
+      autoMode = false;
+      autoBtn.textContent = '全員決まるまで自動';
+      autoBtn.classList.remove('ghost');
+    }
+  }
+
+  // ちょい花火
+  function confettiQuick(){
+    // シンプル演出（Canvasに描かないCSSパーティクル）
+    const n = 60;
+    for(let i=0;i<n;i++){
+      const s = document.createElement('span');
+      const size = 6 + randIntCrypto(10);
+      s.style.position='fixed';
+      s.style.left = (Math.random()*100) + 'vw';
+      s.style.top = '-20px';
+      s.style.width = size+'px';
+      s.style.height = size+'px';
+      s.style.background = i%2? '#7aa2f7' : '#17c964';
+      s.style.borderRadius = '2px';
+      s.style.zIndex = 9999;
+      s.style.pointerEvents = 'none';
+      s.style.transform = `rotate(${Math.random()*360}deg)`;
+      s.style.transition = `transform 1.2s cubic-bezier(.17,.67,.24,1), top 1.2s cubic-bezier(.17,.67,.24,1), opacity 1.2s ease`;
+      document.body.appendChild(s);
+      requestAnimationFrame(()=>{
+        s.style.top = (70+Math.random()*30)+'vh';
+        s.style.opacity = .0;
+        s.style.transform += ` translateY(${60+Math.random()*60}vh) rotate(${(Math.random()*720-360)}deg)`;
+      });
+      setTimeout(()=>s.remove(), 1400);
+    }
+  }
+
+  function resetAll(){
+    remaining = [...initialNames];
+    car = [];
+    tent = [];
+    log.innerHTML = '';
+    currentAngle = 0;
+    autoMode = false;
+    autoBtn.textContent = '全員決まるまで自動';
+    autoBtn.classList.remove('ghost');
+    refreshUI();
+  }
+
+  // === イベント ===
+  spinBtn.addEventListener('click', spinOnce);
+  autoBtn.addEventListener('click', ()=>{
+    if (spinning || remaining.length===0) return;
+    autoMode = true;
+    autoBtn.textContent = '自動進行中…';
+    autoBtn.classList.add('ghost');
+    spinOnce();
+  });
+  resetBtn.addEventListener('click', resetAll);
+
+  // 初期描画
+  refreshUI();
+})();
+</script>
+</body>
+</html>
