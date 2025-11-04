@@ -1,0 +1,710 @@
+/*color green*/
+body {
+  color:#1a1a1a;
+}
+
+/* リンク */
+a:link {
+color:#2449a8;
+  text-decoration: none;
+}    
+a:visited {
+  color:#2449a8;
+  text-decoration: none;
+}  
+a:active {
+  color:#2449a8;
+  text-decoration: none;
+}   
+a:hover {
+  color:#4c85e4;
+  text-decoration:underline;
+}   
+
+.unread a {
+  color: #EC683F;
+}
+span.unreadcount a,
+span.unreadcount {
+  color: #EC683F;
+}
+.unread a:hover {
+  color:#f1815f;
+  text-decoration:underline;
+}
+
+/*フォーム*/
+input.form-input-text,
+input.editable,
+#RptForm input,
+textarea {
+  background-color: #eefcff;
+  border-color: #979585;
+}
+input.inputfocus,
+textarea.inputfocus {
+  background-color:#dff9ff !important;
+}
+body.respon input.form-input-text,
+body.respon input.editable,
+body.respon #RptForm input,
+body.respon textarea {
+  background-color: #fff2c1 ! important;
+  outline-color: #f08200;
+}
+body.respon input.inputfocus,
+body.respon textarea.inputfocus {
+  background-color:#fff2c1 !important;
+}
+
+/*見出し-ボーダー*/
+h1,
+.homecollection h2 {
+  border-color:#8cc62b;
+}
+.contents h1.pagetitle,
+.coursecollection h1.pagetitle,
+.homecollection h1.pagetitle,
+.project h1.pagetitle {
+  border-color:#99cf3e !important;
+}
+
+/*見出し-文字色-黒*/
+.table.stdlist tr.title,table.stdlist tr.title,
+.my-infolist-header h2, .top-contents-list-header h2, .info-list-card h2,
+.collist .collist-year h2,
+.profile .prof-header h2, .pagebody .prof-header h2, .profileedit .prof-header h2
+{
+color:#1a1a1a;
+}
+.articlecontainer-msgtop div.articlesubject,.project-team-info-header h2 {
+color:#1a1a1a !important;
+}
+
+/*見出し-文字色-緑*/
+table.querysubmitted tr.title th,
+table.edit th,
+table.stdlist tr.title th, table.query td,table.queryframe td.querystatus,
+table.querysubmitted tr.title, table.gradelist .grade, .collist-course .collist-courseinfo, table.edit th, table.edit th.title,
+table.edit b,
+table.addnews .editbox2 b,
+.homecollection .reporttext-title,
+.coursecollection .reporttext-title,
+.tpanel_frame .dm-panel h2, .pagebody .dm-panel h2,
+.peoject-header h1,.project-detail-panel .msg-title h2,
+.eventlist .eventlist-day,
+.profile .prof-box-header h3, .profileedit .prof-box-header h3, .user div.username h3,
+.prof-box table.stdlist tr th,
+.my-infolist-mymenu .my-infolist-body h3,
+.groupheader h1
+{
+color:#2e7c40;
+}
+/*form 背景*/
+div.form, .course .teacherview div.form{
+ background-color: #F8F8F8;
+}
+
+/*濃い色の背景*/
+.msg .msg-kinkyu,
+.my-infolist-kinkyu .my-infolist-header {
+    background-color: #2e7c40;
+}
+.my-infolist-kinkyu .my-infolist-body {
+    border-color: #2e7c40;
+}
+
+/*table,infolist-ボーダー*/
+table.stdlist ,table.stdlist tr.title,table.stdlist tr.title th,table.stdlist tr td,
+.home .groupnews-body, 
+.group .info-list-card-body,
+ .course .info-list-card-body,
+table.stdlist tr th,
+div.form,
+table.query,
+table.query tr.title th,
+table.query td.querystatus,
+table.query td,
+table.queryframe,
+table.queryframe tr.title th,
+table.queryframe td.querystatus,
+table.queryframe td.querybody,
+.query-score,
+table.stdlist tr .bordertop,
+table.stdlist tr .borderbottom,
+.articleheader,.articlebody,
+.course .teacherview .mode-preview h1, .course .teacherview .mode-preview table.stdlist, .course .teacherview .mode-preview table.stdlist tr.title, .course .teacherview .mode-preview table.stdlist tr td, .course .teacherview .mode-preview table.stdlist tr.title th, .course .teacherview .mode-preview table.edit, .course .teacherview .mode-preview table.edit tr.title, .course .teacherview .mode-preview table.edit tr td, .course .teacherview .mode-preview table.edit tr th, .course .teacherview .mode-preview .formtitle,
+.collist-course .collist-courseinfo,
+.collist .collist-year-box,.collist-course .collist-course-sum,
+.collldatalist td,
+.formtitle,
+.my-infolist-body,
+.section .coursecard,
+table.remindersetting th, table.remindersetting td,
+table.remindersetting,
+table.edit,table.edit th,table.edit td,
+table.edit th.title,
+.login #login-form-box,
+.login #login-systemnews-box, .systemnews_frame #login-systemnews-box,
+.login #login-information-box, #admin #login-information-box,
+.collectiontop-teacherview table.stdlist .listcollection_td_left,
+.collectiontop-teacherview table.stdlist,
+.reporttext,
+.thread-tree .msgcontainerbody .articleheader-havemsgbody,
+.collectiontop-teacherview table.stdlist td,
+.bbsballoon,
+.project .articleindex ul.contentslist li,
+.panel_groupnews_confirm,
+.my-infolist-event .showmore,
+.my-infolist-tips .my-infolist-header,
+.prof-box table.stdlist tr th,
+.prof-box table.stdlist,
+.prof-box table.stdlist tr td,
+.prof-box .prof-detail-box,
+.prof-box .prof-detail-box h2,
+.eventlist table.edit .event-list-top-border td,
+ .eventlist table.edit .event-list-top-border th,
+.my-infolist-event tr.bordertop td,
+.panel_timetablev2 table.matrix_selector__table tr th
+{
+border-color:#9ecf4c;
+}
+table.gradelist .borderbottom{
+border-color:#9ecf4c !important;
+}
+
+table.stdlist tr th.top-border, table.stdlist tr td.top-border {
+    border-top: 1px solid #9ecf4c;
+}
+table.stdlist tr th.bottom-border, table.stdlist tr td.bottom-border {
+    border-bottom: 1px solid #9ecf4c;
+}
+table.stdlist tr th.no-border, table.stdlist tr td.no-border {
+   border-left :medium none;
+   border-right :medium none;
+}
+
+/*table-見出しの背景色*/
+table.stdlist tr.title th,
+table.query td,
+table.queryframe td.querybody,
+table.querysubmitted tr.title,
+table.gradelist .grade,
+table.edit th,
+table.edit th.title,
+.groupnews_frame .groupnews-msg,
+ .course .teacherview table.query-trigger tr.title  th,
+.thread-tree .msgcontainer .articlecontainerV2 .articleheader,
+.project .articleindex .contentspagelist th,
+.prof-box table.stdlist tr th,
+.prof-box .prof-detail-box h2{
+background-color:#dffabd;
+}
+/*掲示板見出し*/
+.articleheader{
+background-color:#e9fbd1;
+}
+.bbsballoon div.articleheader{
+      border-bottom: 1px dotted #cccccc;
+}
+
+/*掲示板番号*/
+h3.articlenumber,.threadV3 .articlebody div.articlebody-msgbody .parentmsg-no a span,
+.thread-print .articlebody div.articlebody-msgbody .parentmsg-no a span,
+.coursecollection .pagecomseqno, .homecollection .pagecomseqno, .contents .pagecomseqno,
+.previewpanel .pagecomseqno,
+.threadchildlist h3.articlenumber{
+background-color:#9ecf4c;
+
+}
+.threadV3 .articlebody div.articlebody-msgbody .parentmsg-no a:hover span,
+.thread-print .articlebody div.articlebody-msgbody .parentmsg-no a:hover span{
+background-color:#7ec3ff;
+}
+
+/*コンテンツテーブルのボーダー*/
+table.contentslist td,
+table.contentslist th, div.opencontentslist .img-contents,
+table.contentslist, div.opencontentslist{
+border-color:#b7dd78;
+}
+/*コンテンツテーブルの背景*/
+table.contentslist .info-contents,.course div.reportsubmit-preview,
+.collist-course .collist-courseinfo,
+.reporttext-title,
+table.stdlist tr.title-sub td,
+table.stdlist tr.title-sub th{
+background-color:#ecfcd7;
+}
+table.contentslist .hilitecolor .info-contents{
+background-color:#d5f2ff !important;
+}
+/*小テストプレビュー*/
+.course .teacherview .mode-preview table.stdlist tr.title, .course .teacherview .mode-preview table.stdlist tr.title th, .course .teacherview .mode-preview table.edit tr.title, .course .teacherview .mode-preview table.edit tr th, .course .teacherview .mode-preview div.form
+{
+background-color:#DFFABD;
+    border-color: #9ECF4C;
+color:#2e7c40;
+}
+body.queryformV2 table.query table td,
+body.queryformV2 table.queryframe table.uploaded-query-files td{
+background-color:#fff;
+color:#333333;
+  border:medium none;
+}
+
+/*ハイライト*/
+body .hilitecolor,
+body tr.hilitecolor td,
+div.hilitearticle div.articleheader .articlesubject,
+table.stdlist tr.row1:hover,
+table.stdlist tr.row0:hover,
+table.stdlist tr.row:hover,
+table.mblist tr:hover,
+.pagebody .board-box-s-body .news-list tr:hover,
+table.stdlist-news tr:hover,
+.course-tasklist tr:hover,
+table.collldatalist tr:hover {
+  background-color:#effbff !important;
+}
+body.respon .hilitecolor,
+body.respon tr.hilitecolor td,
+body.respon div.hilitearticle div.articleheader .articlesubject,
+body.respon table.stdlist tr.row1:hover,
+body.respon table.stdlist tr.row0:hover,
+body.respon table.stdlist tr.row:hover,
+body.respon table.mblist tr:hover,
+body.respon .pagebody .board-box-s-body .news-list tr:hover,
+body.respon table.stdlist-news tr:hover,
+body.respon .course-tasklist tr:hover,
+body.respon table.collldatalist tr:hover {
+  background-color:#fffae8 !important;
+}
+div.hilitearticle h3.articlenumber {
+    background-color: #7ec3ff !important;
+}
+div.hilitearticle div.articleheader .articlesubject ,.threadchildlist div.hilitearticle div.articleheader-havemsgbody .articlesubject{
+       color: #1960AD !important;
+}
+div.hilitearticle div.articleheader {
+    background-color: #EFFBFF !important;
+    border-color: #7EC3FF !important;
+}
+div.hilitearticle div.articlebody ,.threadchildlist div.hilitearticle div.articleheader-havemsgbody,
+.threadchildlist div.hilitearticle div.articleheader-havemsgbody .articlesubject{
+    background-color: #FFFFFF !important;
+    border-color: #7EC3FF !important;
+}
+.threadchildlist div.hilitearticle .articleheader-havemsgbody h3.articlenumber{
+background-color:#ABD9FF !important;
+}
+.bbsballoon div.hilitearticle{
+    background-color: #EFFBFF !important;
+}
+
+.bbsballoon div.hilitearticle div.articleheader{
+      border-bottom :1px dotted #cccccc !important;
+}
+
+
+/*例外-ハイライト無し*/
+table.stdlist-reportV2 tr.row0:hover, table.stdlist-reportV2 tr.row:hover,
+table.stdlist-reportV2 tr.row1:hover {
+    background-color: #FFFFFF !important;
+}
+
+
+/*ハイライト-コースカード*/
+.section .coursecard:hover,
+div.coursecardV2:hover .course-card-titleV2 a, 
+div.coursecardV2:hover .course-card-titleV2 .course-title-span{
+border-color:#89c8ff !important;
+    background-color: #edf7ff !important;
+}
+
+/*編集後のハイライト*/
+ body tr.hiliterow td{
+background-color:#D5F2FF;
+}
+
+/*パネルの背景*/
+.tpanel_frame .msg, .pagebody .msg,#panel_frame,
+.tpanel_frame .profile, .tpanel_frame .profileedit, .pagebody div.profile{
+   background-color: #c9e99b;
+}
+.tpanel_frame .dm-panel{
+background-color:#fff;
+}
+.tpanel_frame .msg-body .msg-info .msg-info-caption, .pagebody .msg-body .msg-info .msg-info-caption{
+background-color:#EAF9D8;
+}
+
+
+/*お知らせのボーダー*/
+.groupnews_frame .groupnews-msg{
+border-color:#abdc58;
+}
+/*画像*/
+/*header*/
+#mynavi {
+    background: url("bg_header1.gif") no-repeat scroll 0 0 transparent;
+    height: 33px;
+    width: 950px;
+}
+/*リストアイコン*/
+.groupnewslist th, .groupthreadlist th, .info-list-card-body ul li,
+.my-infolist-tips .tips-list h3{
+    background: url("marker-diamond1.gif") no-repeat scroll left center transparent;
+}
+.course ul.forwlink{
+    margin-top: 0.5em;
+    padding-left: 8px;
+}
+.course ul.forwlink li{
+  list-style:url("marker-diamond1.gif") outside;
+
+}
+
+.msg-text ul li, body.rteditor ul li, .articlebody ul li, ul.queryconfirm li,
+.message .description ul li, .dm-panel .description ul li, .teacherview .description ul li,
+.pagebody .contentbody-s ul li, .querypaper ul  li  , #admin .msg .msg-text  ul  li,
+.previewpanel .articletext ul li{
+    list-style: disc inside url("marker-diamond1.gif");
+}
+/*リストアイコン2*/
+.articleindex .contentspagelist li, .contentsballooncontent .contentslist li{
+    list-style: disc outside url("icon_pagelist1.gif");
+}
+
+.inlineaf-object-description2{
+    background-image:url("/icon-file_movie1.png") ;
+}
+.inlineaf-object-description2:hover{
+    background-image:url("/icon-file_movie1-focus.png") 
+}
+
+/*その他ボーダー*/
+.contents .contentsheader,
+.contents .articleauthorV2
+{
+border-color:#d1ebae;
+}
+
+
+/*ログインボックス*/
+.login #login-information-box, #admin #login-information-box ,
+.login #login-systemnews-box, .systemnews_frame #login-systemnews-box{
+    background-color: #F4FDE7;
+}
+/*ログイン見出し文字*/
+.login h3,.login #login-form-box table th, .login #login-form-box table td,.login h1 {
+    color: #468E00;
+}
+.login h1{
+background-image: url("bg_h1_login1.gif");
+}
+.login .informationentry li, #admin .informationentry li {
+    background: url("listicon_info1.png") no-repeat scroll 3px 5px transparent;
+}
+
+/*マイページ*/
+.pagebody .my-infolist-mycourses .my-infolist-header{
+background-image:url("bg_mycourse_list_header1.gif");
+}
+.pagebody .my-infolist-tasklistqr .my-infolist-header{
+background-image:url("bg_mycourse_tasklists_header1.gif");
+}
+
+body.widebody .pagebody .my-infolist-mycourses .my-infolist-header{
+   background-image:url("/bg_mycourse_weekly_header1.gif");
+}
+.my-infolist-event .my-infolist-header{
+    background-image: url("bg_mycourse_myeventlist_header1.gif");
+}
+.my-infolist-submitlog .my-infolist-header,
+.my-infolist-ryugaku .my-infolist-header{
+    background-image: url("bg_mycourse_mysubmitlist_header1.gif");
+}
+
+.pagebody .my-infolist-coursenews .my-infolist-header {
+    background-image: url("bg_groupnews_header_l1.png");
+}
+
+.pagebody .contentbody-left .my-infolist-coursenews .my-infolist-header {
+    background-image: url("bg_groupnews_header_m1.png");
+}
+
+
+.pagebody .my-infolist-mycourses-l .my-infolist-header {
+    background-image: url("bg_mycourse_list_l_header1.gif");
+}
+.my-infolist-searchall .my-infolist-header{
+    background-image: url("/bg_search_all_header1.gif");
+}
+.my-infolist-kikuzou .my-infolist-body,
+.my-infolist-kikuzou .my-infolist-header,
+.my-infolist-tgl .my-infolist-body,
+.my-infolist-tgl .my-infolist-header,
+.my-infolist-maisaku .my-infolist-body,
+.my-infolist-maisaku .my-infolist-header,
+.my-infolist-ryugaku .my-infolist-header
+.my-infolist-ryugaku .my-infolist-body{
+   border-color:#89c8ff;
+}
+ .my-infolist-tgl .tips-list h3{
+   background-image:url("marker-diamond.gif")
+}
+
+
+/*コーストップ*/
+.group-top .info-list-cardl .info-list-card-header{
+    background-image: url("bg_groupnews_header1.gif");
+}
+.group-top .info-list-cardr .info-list-card-header {
+    background-image: url("bg_groupthread_header1.gif");
+}
+.group-top .top-contents-list .top-contents-list-header {
+    background-image: url("bg_groupcontents_header1.gif");
+}
+
+.coursetop-contentsmain .info-list-cardr .info-list-card-header{
+    background-image: url("bg_groupthread_header_s1.gif");
+}
+.coursetop-contentsmain .info-list-cardl .info-list-card-header {
+    background-image: url("bg_groupnews_header_s1.gif");
+}
+.coursetop-contentsmain .top-contents-list-l .top-contents-list-header {
+    background-image: url("bg_groupcontents_header_s1.gif");
+}
+.coursetop-contentsmain .info-list-card-pagelist .info-list-card-header {
+    background-image: url("bg_pagelist_header_s1.gif");
+}
+.coursetop-contentsmain .info-list-card-contentslist .info-list-card-header{
+    background-image: url("bg_pagelist_header_s1.gif");
+}
+
+.coursetop-contentsmain .info-list-card-pagelist .info-list-card-body ul.contentslist li{
+    background-image: url("icon_pagelist1.gif");
+}
+.slotinfo .info-list-card-header{
+    background-image: url("bg_slot_header1.gif");
+}
+.bulksurveyinfo .info-list-card-header{
+    background-image: url("bg_bulksurvey_header1.gif");
+}
+.my-infolist-mymenu .my-infolist-header {
+    background-image: url("/bg_mymenu_header1.png");
+}
+
+/*コンテンツ*/
+.contents .contentsheader .contentsheader-about-contents-2{
+    background: url("bg_contents_header1.gif") no-repeat scroll 0 0 #f0fae0;
+}
+.contents .articleauthorV2 .contentpage-navi,
+.contents .contentsheader {
+  background-color:#f0fae0;
+}
+
+.articleindex .contentspagelist th{
+background-image: url("icon_book1.gif");
+}
+.contents  .articleindex .contentspagelist th{
+    background: url("icon_contentslist1.png") no-repeat scroll 5px 7px #DFFABD;
+}
+
+/*掲示板*/
+.threadV3 .articlebody div.articlebody-msgbody .parentmsg-no a,
+.thread-print .articlebody div.articlebody-msgbody .parentmsg-no a{
+    background-image: url("icon_bbs_replay1.png") ;
+}
+.threadV3 .articlebody div.articlebody-msgbody .parentmsg-no a:hover,
+.thread-print .articlebody div.articlebody-msgbody .parentmsg-no a:hover{
+    background-image: url("icon_bbs_replay1-hover.png") ;
+}
+
+/*ポートフォリオ*/
+.collist .collist-year{
+background-image:url("bg_portfolio_list_header1.gif");
+}
+span.collyear-open {
+background-image:url("/button_board_box-close1.gif");
+}
+span.collyear-open:hover {
+    background-image: url("/button_board_box-close1-focus.gif");
+}
+span.collyear-close {
+    background-image: url("/button_board_box-open1.gif");
+}
+span.collyear-close:hover {
+    background-image: url("/button_board_box-open1-focus.gif");
+}
+/*ツリー表示*/
+.thread-tree .msgcontainer .articlecontainerV2 .articleheader{
+    background-image: url("button_board_box-open1.gif") ;
+}
+
+.thread-tree .msgcontainer .hilitearticle .articleheader {
+    background-image: url("button_board_box-open.gif") ;
+}
+.thread-tree .msgcontainer .articlecontainerV2 .articleheader:hover{
+    /*background-image: url("button_board_box-open-focus1.gif") ;*/
+}
+
+.thread-tree .msgcontainer .hilitearticle .articleheader:hover {
+    background-image: url("button_board_box-open-focus.gif") ;
+}
+
+
+/*プロジェクト*/
+.pagebody div.project-detail .contentbody-right .articleindex table th{
+background: url("icon_project_team1.png") no-repeat scroll 7px 7px #DFFABD;
+}
+.pagebody div.project-detail .articleindex .team-mblist li{
+ list-style: disc outside url("icon_memberlist1.png");
+}
+div.announce-all-team{
+    background-image: url("icon_thread_team_all1.png") ;
+}
+div.hilitearticle div.announce-all-team{
+ background-image: url("icon_thread_team_all.png")
+}
+.pagebody div.project-detail .contentbody-right .articleindex table.memberlist th{
+   background-image:url(icon_profile_detail1.png);
+}
+
+/*スレッド*/
+.thread-tree .threadchildlist .articlecontainerV2 .articleheader, .thread-tree .threadchildlist .articlecontainerV2 .articleheader:hover {
+    background: none repeat scroll 0 0 #FFFFFF;
+    cursor: auto;
+}
+.thread-tree .msgcontainer .articlecontainerV2 .articleheader-havemsgbody {
+    background-image: url("button_board_box-close1.gif") ;
+}
+.thread-tree .msgcontainer .hilitearticle .articleheader-havemsgbody {
+    background: url("button_board_box-close.gif") no-repeat scroll 634px center  #DFFABD;
+}
+
+.thread-tree .msgcontainer .articlecontainerV2 .articleheader-havemsgbody:hover {
+    background: url("button_board_box-close-focus1.gif") no-repeat scroll 634px center #E7F6FF;
+}
+.thread-tree .msgcontainer .hilitearticle .articleheader-havemsgbody {
+    background: url("button_board_box-close.gif") no-repeat scroll 634px center  #DFFABD;
+}
+.thread-tree .msgcontainer .hilitearticle .articleheader-havemsgbody:hover {
+    background: url("button_board_box-close-focus.gif") no-repeat scroll 634px center #E7F6FF;
+}
+.thread-tree .msgcontainer .hilitearticle .articleheader{
+  /*  background-image: url("button_board_box-open-focus.gif") ;*/
+}
+
+
+.threadchildlist h3.articlenumber{
+background-color:#b7dd78;
+}
+.thread-tree .threadchildlist .articlecontainerV2 .articleheader, .thread-tree .threadchildlist .articlecontainerV2 .articleheader:hover{
+  background: none repeat scroll 0 0 #FFFFFF;
+    cursor: auto;
+}
+.threadchildlist div.hilitearticle div.articleheader .articlesubject{
+background-color:#fff !important;
+}
+
+/*本文の装飾*/
+.msg-text h1, body.rteditor h1, .articlebody h1, .articletext h1{
+  background: url("bg_h1_msg-text1.gif") repeat-y scroll 0 0 #F0FAE0;
+}
+.msg-text h2, body.rteditor h2, .articlebody h2, .articletext h2 {
+color:#8cc62b;
+}
+
+.msg-text h3, body.rteditor h3, body.rteditor h3, body.rteditor h4, body.rteditor h5, .articlebody h3, .articletext h3 {
+border-color:#8cc62b;
+}
+
+.teacherview .articlebody-teacherview h2,
+.teacherview .articlebody-teacherview h3{
+  border-color:#babfc4;
+}
+.teacherview .articlebody-teacherview h3{
+    color: #666;
+}
+.groupnews_frame .msg-teacherview{
+    border-color:#afafaf;
+}
+.tpanel_frame .msg-teacherview, .pagebody .msg-teacherview{
+     background-color:#e5e5e5;
+}
+.tpanel_frame .msg-teacherview .msg-body .msg-info .msg-info-caption,
+ .pagebody .msg-teacherview .msg-body .msg-info .msg-info-caption {
+    background-color: #ebebeb;
+}
+
+
+
+/*ファイルアイコン*/
+ul.attachments li,
+.articlebody ul.attachments li ,
+.rteditor .inlineattachment {
+/* background-image: url(/icon-file1.gif) no-repeat left center;*/
+}
+.rteditor .inlineattachment:hover {
+/*    background-image: url("/icon-file1-hover.gif");*/
+}
+
+/* 数字の背景*/
+.home span.circlenumber{
+   background-image:url("/circle20x20green.gif") ;
+}
+/*respon color*/
+.tpanel_frame .respon-attend-panel h2, .respon-attend-dm-panel h2{
+  color:#F08200;
+}
+ .respon-attend-panel .notice{
+  color:#453E30;
+}
+.respon-attend-panel .dm-panel-body ul li{
+list-style:outside url("marker-diamond-respon.gif") disc
+}
+
+
+/*リンク*/
+.alert-link a {
+    color: #ec683f;
+}
+
+/*グループ*/
+.groupheader h1 {
+  background-image: url("/icon_group1.png") ;
+}
+
+/*マイコース1カラム*/
+.mycouesemenu-left .my-infolist-coursenews .my-infolist-header {
+    background-image: url("bg_groupnewsV3_header1.png");
+}
+
+.mycouesemenu-right .my-infolist-syllabus .my-infolist-header,
+.mycouesemenu-right .my-infolist-searchall .my-infolist-header  {
+    background-image: url("/bg_syllabusV2_header1.png");
+}
+/*特殊なコース*/
+.section .coursecard-optioncolor{
+     border-color:#CC6666;
+}
+
+
+/* respon6 のリンク基本色(単体では設定も含むかも) */
+div.contentbody-l.respon6 .respon-header a {
+  color: #009AF3 ! important;
+}
+div.contentbody-l.respon6 .respon-header a:link {
+  color: #009AF3 ! important;
+}
+div.contentbody-l.respon6 .respon-header a:hover {
+  color: #009AF3 ! important;
+}
+div.contentbody-l.respon6 .respon-header a:visited {
+  color: #009AF3 ! important;
+}
+div.contentbody-l.respon6 .respon-header a:active {
+  color: #009AF3 ! important;
+}

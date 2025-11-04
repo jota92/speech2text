@@ -1,0 +1,64 @@
+/* $Id$ */
+
+body {
+}
+
+h2 input {
+ font-size: 100%;
+}
+
+div.buttongroupright input {
+ font-size: 100%;
+}
+
+textarea {
+ font-size: 12px;
+}
+
+.memo1,.memo2,.memo3,.memo4 textarea {
+ font-size: 100% ! important;
+}
+
+ul.backlink li {
+ list-style-type: none;
+ list-style-position: inside !important;
+ list-style-image: url(/marker-jump.gif);
+}
+
+div.pagebodyalign {
+ height: 0px;
+ visibility: hidden;
+}
+
+div.diffframe {
+ font-size: 90%;
+}
+
+
+div.tempedit textarea,
+div.tempedit_readonly textarea {
+ width: 582px !important;
+ border: none;
+}
+
+textarea {
+ max-width: 100%;
+}
+
+/* queryconfirm*/
+#queryouterframe ul.queryconfirm li{
+list-style-position:inside;
+margin-left:0;
+}
+
+body.rteditor_queryv4 ol.matching-list,
+body.rteditor_queryv4 ol.matchingselection,
+body.rteditor_queryv4 div.matching-frame,
+body.rteditor_queryv4 ol.permutation,
+body.rteditor_queryv4 ol.queryselection,
+body.rteditor_queryv4 ol.multiselection,
+body.rteditor_queryv4 ol.yesnoselection,
+body.rteditor_queryv4 ol.pulldownselection,
+body.rteditor_queryv4 ol.powerselection {
+ width: 425px;
+}
